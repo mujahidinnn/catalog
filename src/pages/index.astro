@@ -1,0 +1,156 @@
+---
+import { Image } from "astro:assets";
+import "../styles/global.css";
+import products, { upcoming } from "../products";
+
+const shots = import.meta.glob<{ default: ImageMetadata }>("../assets/shots/*.png", { eager: true });
+const shot = (slug: string) => shots[`../assets/shots/${slug}.png`].default;
+
+const title = "Product Catalog — Mujahidin";
+const description =
+  "Products built by Mujahidin: WorkDesk (daily reporting & HRIS), StockDesk (inventory & warehouse), Mojepict (web toolbox) and Mekar Ayu (cycle tracker), plus Sopi, Ruang Materi, AI Docs Assistant and CyberVerse Corp in development.";
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: title,
+  itemListElement: products.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "SoftwareApplication",
+      name: p.name,
+      description: p.summary,
+      url: p.url,
+      applicationCategory: p.category,
+      operatingSystem: "Web",
+      author: { "@type": "Person", name: "Mujahidin", url: "https://mujahidin.my.id" },
+    },
+  })),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta name="color-scheme" content="light" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <header class="flex items-center justify-between py-6 text-sm">
+        <a href="https://mujahidin.my.id" class="font-semibold">Mujahidin</a>
+        <a href="https://mujahidin.my.id" class="text-ink-3 hover:text-ink">About me</a>
+      </header>
+
+      <main>
+        <section class="pb-14 pt-10 sm:pb-20 sm:pt-16">
+          <h1 class="max-w-4xl text-5xl font-extrabold leading-[0.95] tracking-[-0.035em] sm:text-7xl lg:text-8xl">
+            Software I built and&nbsp;still run.
+          </h1>
+          <p class="mt-6 max-w-xl text-lg text-ink-2">
+            {products.length} products are live and free to try. {upcoming.length} more are being built right now.
+          </p>
+          <nav aria-label="Products" class="mt-8 flex flex-wrap gap-2">
+            {products.map((p) => (
+              <a
+                href={`#${p.slug}`}
+                class="flex items-center gap-2 rounded-full border border-line bg-white py-2 pl-3 pr-4 text-sm font-medium hover:border-ink"
+              >
+                <span class="size-2.5 rounded-full" style={`background:${p.color}`} />
+                {p.name}
+              </a>
+            ))}
+            <a href="#building" class="rounded-full border border-dashed border-ink-3 px-4 py-2 text-sm text-ink-2 hover:border-ink">
+              In progress
+            </a>
+          </nav>
+        </section>
+
+        <div class="space-y-5">
+          {products.map((p, i) => (
+            <article
+              id={p.slug}
+              class="grid scroll-mt-6 overflow-hidden rounded-[2rem] lg:grid-cols-[5fr_7fr]"
+              style={`--brand:${p.color};background:color-mix(in oklab, ${p.color} 9%, white)`}
+            >
+              <div class="p-7 sm:p-10">
+                <p class="text-sm font-medium text-[color-mix(in_oklab,var(--brand)_70%,black)]">{p.category}</p>
+                <h2 class="mt-2 text-4xl font-extrabold tracking-[-0.03em] sm:text-5xl">{p.name}</h2>
+                <p class="mt-3 text-xl leading-snug text-ink-2">{p.tagline}</p>
+                <p class="mt-5 leading-relaxed text-ink-2">{p.summary}</p>
+                <ul class="mt-6 space-y-2.5 text-[0.9375rem]">
+                  {p.features.map((f) => (
+                    <li class="flex gap-3">
+                      <svg viewBox="0 0 16 16" class="mt-1 size-4 shrink-0 text-[var(--brand)]" aria-hidden="true">
+                        <path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="rounded-full bg-[color-mix(in_oklab,var(--brand)_80%,black)] px-6 py-3 font-semibold text-white hover:bg-[color-mix(in_oklab,var(--brand)_65%,black)]"
+                  >
+                    Try {p.name}
+                  </a>
+                  <span class="text-sm text-ink-3">{p.url.replace("https://", "")}</span>
+                </div>
+                <p class="mt-8 text-sm text-ink-3">Built with {p.stack.join(", ")}</p>
+              </div>
+              <a href={p.url} target="_blank" rel="noopener" tabindex="-1" class="self-end pl-7 pt-2 sm:pl-10 lg:pl-0 lg:pt-10">
+                <Image
+                  src={shot(p.slug)}
+                  alt={`${p.name}: ${p.tagline}`}
+                  widths={[700, 1400]}
+                  sizes="(min-width: 1024px) 680px, 100vw"
+                  loading={i === 0 ? "eager" : "lazy"}
+                  class="w-full rounded-tl-2xl shadow-[0_0_0_1px_rgb(0_0_0/0.06)]"
+                />
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <section id="building" class="scroll-mt-6 py-20 sm:py-28" aria-labelledby="building-title">
+          <h2 id="building-title" class="text-4xl font-extrabold tracking-[-0.03em] sm:text-5xl">Being built</h2>
+          <p class="mt-3 max-w-xl text-lg text-ink-2">Not ready to try yet. Each one moves up to the shelf above when it ships.</p>
+          <ul class="mt-10 divide-y divide-line border-y border-line">
+            {upcoming.map((p) => (
+              <li class="grid gap-2 py-6 md:grid-cols-[14rem_1fr_13rem] md:gap-8">
+                <div>
+                  <h3 class="text-xl font-bold">{p.name}</h3>
+                  <p class="text-sm text-ink-3">{p.category}</p>
+                </div>
+                <p class="leading-relaxed text-ink-2">{p.summary}</p>
+                <p class="text-sm text-ink-3 md:text-right">{p.stack.join(", ")}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
+
+      <footer class="flex flex-wrap justify-between gap-2 border-t border-line py-8 text-sm text-ink-3">
+        <span>© {new Date().getFullYear()} Mujahidin</span>
+        <a href="https://mujahidin.my.id" class="hover:text-ink">mujahidin.my.id</a>
+      </footer>
+    </div>
+  </body>
+</html>

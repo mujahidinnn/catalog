@@ -1,0 +1,21 @@
+@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-paper: #f4f6f9;
+  --color-ink: #15171c;
+  --color-ink-2: #4b5160;
+  --color-ink-3: #727887;
+  --color-line: #dfe3ea;
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+  font-optical-sizing: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}

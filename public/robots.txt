@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://catalog.mujahidin.my.id/sitemap.xml
