@@ -41,6 +41,9 @@ const jsonLd = {
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
     <meta name="color-scheme" content="light" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -52,7 +55,10 @@ const jsonLd = {
   <body>
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <header class="flex items-center justify-between py-6 text-sm">
-        <a href="https://mujahidin.my.id" class="font-semibold">Mujahidin</a>
+        <a href="https://mujahidin.my.id" class="flex items-center gap-2 font-semibold">
+          <img src="/favicon.svg" alt="" width="28" height="28" />
+          Mujahidin
+        </a>
         <a href="https://mujahidin.my.id" class="text-ink-3 hover:text-ink">About me</a>
       </header>
 
