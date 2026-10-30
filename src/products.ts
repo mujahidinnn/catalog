@@ -34,6 +34,23 @@ export default [
     url: "https://stockdesk.mujahidin.my.id",
   },
   {
+    slug: "sopi",
+    color: "#ec6a26",
+    name: "Sopi",
+    category: "Omnichannel retail sales",
+    tagline: "Online store, cashier and B2B sales, one data.",
+    summary:
+      "One sales system for multi-outlet retail. The online store, the in-store POS and the B2B sales team share one catalog, one stock count, one price logic and one customer base.",
+    features: [
+      "Online store with outlet pickup or delivery, priced by the server",
+      "POS shifts, held carts, supervisor PIN and member points",
+      "Quotation to invoice, with a credit gate and tiered approval",
+      "Price books, stackable promos and stock per outlet",
+    ],
+    stack: ["Vue 3", "Pinia", "TanStack Query", "Supabase"],
+    url: "https://sopi.mujahidin.my.id",
+  },
+  {
     slug: "mojepict",
     color: "#6a4cf5",
     name: "Mojepict",
@@ -70,13 +87,6 @@ export default [
 ];
 
 export const upcoming = [
-  {
-    name: "Sopi",
-    category: "POS & sales management",
-    summary:
-      "Cashier, quotations, orders, invoices, receivables, promos, members, returns, commission and outlet stock in one place.",
-    stack: ["Vue 3", "Pinia", "TanStack Query", "Supabase"],
-  },
   {
     name: "Ruang Materi",
     category: "Learning platform",
