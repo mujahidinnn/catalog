@@ -84,16 +84,26 @@ export default [
     stack: ["React", "TypeScript", "Dexie", "PWA"],
     url: "https://mekar-ayu.vercel.app",
   },
+  {
+    slug: "ruang-materi",
+    color: "#76992f",
+    name: "Ruang Materi",
+    category: "Learning platform",
+    tagline: "Learn to code, step by step.",
+    summary:
+      "Free programming courses in Bahasa Indonesia, built from PowerPoint decks. Every course is split into chapters to read in the browser, with quizzes, code exercises, flashcards and a final exam. No download, no sign-up required.",
+    features: [
+      "17 courses and 3 roadmaps, from HTML to Node.js and SQL",
+      "Code exercises run and checked in the browser",
+      "Spaced-repetition flashcards and server-graded exams",
+      "Verifiable certificates, installable PWA with offline mode",
+    ],
+    stack: ["Astro", "React 19", "Supabase", "PWA"],
+    url: "https://ruang-materi.mujahidin.my.id",
+  },
 ];
 
 export const upcoming = [
-  {
-    name: "Ruang Materi",
-    category: "Learning platform",
-    summary:
-      "Turns PowerPoint decks into interactive courses with chapters, quizzes, flashcards, exams, streaks and badges. Installable as an offline PWA.",
-    stack: ["Next.js", "Supabase", "Gemini", "PWA"],
-  },
   {
     name: "AI Docs Assistant",
     category: "RAG & tool calling",
