@@ -6,14 +6,14 @@ export default [
     category: "Daily reporting & HRIS",
     tagline: "Your workday, all in one desk.",
     summary:
-      "Daily reporting and HRIS for small teams. Employees log their work, clock in, request leave or overtime and chat with the team. Managers see progress, blockers and attendance without chasing a spreadsheet.",
+      "Daily reporting and HRIS for small teams. Employees log their work, clock in, request leave or overtime and chat with the team, or just type a request to the built-in AI assistant. Managers see progress, blockers and attendance without chasing a spreadsheet.",
     features: [
       "Daily reports per project, with progress and blockers",
+      "AI command bar: ask questions or prepare actions to confirm",
       "Dashboard and Gantt timeline calculated from the reports",
-      "Attendance with late flags and period locking",
-      "Leave, overtime and business trips with approval flow",
+      "Attendance, leave, overtime and trips with approval flow",
     ],
-    stack: ["React 19", "TypeScript", "Tailwind CSS", "Supabase"],
+    stack: ["React 19", "TypeScript", "Tailwind CSS", "Supabase", "Gemini"],
     url: "https://workdesk.mujahidin.my.id",
   },
   {
