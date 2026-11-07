@@ -23,14 +23,14 @@ export default [
     category: "Inventory & warehouse",
     tagline: "Your warehouse and inventory, perfectly in sync.",
     summary:
-      "Inventory and warehouse management for retail, distributors and small fulfillment warehouses. Every unit moves through an append-only ledger, from the receiving dock to the delivery order.",
+      "Inventory and warehouse management for retail, distributors and small fulfillment warehouses. Every unit moves through an append-only ledger, from the receiving dock to the delivery order, and a read-only AI assistant answers questions about the stock in plain language.",
     features: [
       "Stock per warehouse, bin and batch, with nested units",
       "FEFO/FIFO picking and blind stock opname",
       "FIFO and moving-average valuation as of any date",
-      "Public REST API with signed webhooks",
+      "AI assistant: ask about stock and orders, jump to the right page",
     ],
-    stack: ["React 19", "TypeScript", "Supabase", "Recharts"],
+    stack: ["React 19", "TypeScript", "Supabase", "Gemini"],
     url: "https://stockdesk.mujahidin.my.id",
   },
   {
